@@ -4,13 +4,13 @@ RUN apt update && \
     apt install -y git curl wget sudo
 
 # install C/C++ and Python
-RUN apt install -y gcc-12 g++-12 clang-format python3.11 python3-pip pypy3
+RUN apt install -y gcc-12 g++-12 clangd clang-format python3.11 python3-pip pypy3
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 10 && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 10 && \
     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 10
 
 # install python dependencies
-COPY requirements.txt /
+COPY data/requirements.txt /
 RUN pip install -r requirements.txt
 
 ARG USERNAME=ijub
@@ -24,10 +24,13 @@ USER $USERNAME
 WORKDIR /home/$USERNAME
 
 RUN curl -fsSL https://code-server.dev/install.sh | sh
-RUN code-server --install-extension ms-python.python
+RUN code-server \
+    --install-extension ms-python.python \
+    --install-extension llvm-code-extensions.vscode-clangd
 # ms-vscode-cpptools
 
-COPY --chown=$USERNAME:$PASSWORD docker-entrypoint.sh $HOME
+COPY --chown=$USERNAME:$PASSWORD data/settings.json $HOME/.local/share/code-server/User
+COPY --chown=$USERNAME:$PASSWORD data/docker-entrypoint.sh $HOME
 
 EXPOSE 8080
 

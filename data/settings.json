@@ -1,0 +1,30 @@
+{
+    "[c]": {
+        "editor.tabSize": 2,
+        "edtor.formatOnSave": true
+    },
+    "[cpp]": {
+        "editor.tabSize": 2,
+        "edtor.formatOnSave": true
+    },
+    "clang-format.executable": "/usr/bin/clang-format",
+    "editor.fontSize": 16,
+    "editor.renderWhitespace": "boundary",
+    "explorer.autoReveal": false,
+    "explorer.compactFolders": false,
+    "extensions.ignoreRecommendations": true,
+    "[python]": {
+        "edtor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "python.formatting.blackPath": "/usr/local/bin/black",
+    "python.formatting.provider": "black",
+    "python.sortImports.path": "/usr/local/bin/isort",
+    "security.workspace.trust.untrustedFiles": "open",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.inheritEnv": false,
+    "workbench.editor.closeOnFileDelete": true,
+    "workbench.startupEditor": "newUntitledFile"
+}

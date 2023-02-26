@@ -20,7 +20,7 @@ RUN pip install -r requirements.txt
 
 ARG USERNAME=ijub
 ARG PASSWORD=ijub
-RUN useradd -m -s /bin/bash $USERNAME && \
+RUN useradd -m -u 1000 -s /bin/bash $USERNAME && \
     gpasswd -a $USERNAME sudo && \
     echo $USERNAME:$PASSWORD | chpasswd && \
     echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers

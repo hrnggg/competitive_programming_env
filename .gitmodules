@@ -1,0 +1,3 @@
+[submodule "atcoder"]
+	path = atcoder
+	url = github_work:hrnggg/atcoder.git

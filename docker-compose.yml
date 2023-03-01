@@ -1,0 +1,9 @@
+version: "3"
+services:
+  comp_env:
+    build: .
+    user: 1000:1000
+    volumes:
+      - $PWD/atcoder:/home/ijub/contest
+    working_dir: /home/ijub/contest
+    tty: true

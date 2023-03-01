@@ -1,19 +1,15 @@
 # competitive_programming_env
 
-## Usage (WIP)
-build
-```
-docker build . -t competitive_programming_env
-```
-
+## Usage
 run with code-server
 ```
-docker run --name tmp -d -p 8080:8080 -u 1000:1000 -v $(pwd)/atcoder:/home/ijub/contest competitive_programming_env
+docker-compose -f docker-compose.yml -f docker-compose.code.yml up -d && \
+open http://localhost:8080
 ```
 
 run with cli editor (e.g. vim)
 ```
-docker run --name tmp -it -u 1000:1000 -v $(pwd)/atcoder:/home/ijub/contest competitive_programming_env /bin/bash
+docker-compose run comp_env
 ```
 
 ## [TODO]

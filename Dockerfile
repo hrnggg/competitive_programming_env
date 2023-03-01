@@ -18,6 +18,7 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 10 && \
 COPY data/requirements.txt /
 RUN pip install -r requirements.txt
 
+# add user
 ARG USERNAME=ijub
 ARG PASSWORD=ijub
 RUN useradd -m -u 1000 -s /bin/bash $USERNAME && \
@@ -27,19 +28,23 @@ RUN useradd -m -u 1000 -s /bin/bash $USERNAME && \
 USER $USERNAME
 WORKDIR /home/$USERNAME
 
+# setup code-server
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 RUN code-server \
     --install-extension ms-python.python \
     --install-extension llvm-code-extensions.vscode-clangd
 # ms-vscode-cpptools does not exist on code-server
 
+# setup vim
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# locate setting files
 COPY --chown=$USERNAME:$USERNAME data/vim/.vimrc $HOME
 COPY --chown=$USERNAME:$USERNAME data/vim/coc-settings.json $HOME/.vim
 COPY --chown=$USERNAME:$USERNAME data/code-server/settings.json $HOME/.local/share/code-server/User
-COPY --chown=$USERNAME:$USERNAME data/docker-entrypoint.sh $HOME
+COPY --chown=$USERNAME:$USERNAME data/entrypoint.sh $HOME
 
 EXPOSE 8080
 
-CMD ["./docker-entrypoint.sh"]
+CMD ["/bin/bash"]

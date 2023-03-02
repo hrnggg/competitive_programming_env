@@ -10,7 +10,8 @@ call plug#end()
 syntax on
 set backspace=indent,eol,start
 inoremap <silent> jj <ESC>
-colorscheme onedark
+silent! colorscheme onedark
+set encoding=utf-8
 
 filetype plugin indent on
 set number 

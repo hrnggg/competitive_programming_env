@@ -1,32 +1,47 @@
 # competitive_programming_env
 
 ## Usage
-run with code-server
+run env with code-server
 ```
 docker-compose -f docker-compose.yml -f docker-compose.code.yml up -d && \
 open http://localhost:8080
 ```
 
-run with cli editor (e.g. vim)
+run env with cli
 ```
 docker-compose run comp_env
 ```
 
-cleanup
+cleanup env
 ```
 docker-compose down
 docker container prune
+```
+
+example of cpp
+```
+cd </path/to/problem>
+oj login https://atcoder.jp/
+oj d <problem-url>
+g++ a.cpp
+oj t
+oj s a.cpp
+```
+
+example of python
+```
+...
+oj t -c "python3 a.py"
+...
 ```
 
 ## [TODO]
 - code-server
     - run code-server with mounted directory
     - formatting/linting and language-server (e.g. clang-format, clangd, black, isort, etc.) does not seem to work.
+    - code completion for ac-library
 - vim
     - enable to install coc extensions by loading .vimrc
-- common
-    - code completion for ac-library
-
 
 ## references
 https://github.com/Hiromi-Ayase/competitive-programming-env

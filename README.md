@@ -24,7 +24,8 @@ docker container prune
     - formatting/linting and language-server (e.g. clang-format, clangd, black, isort, etc.) does not seem to work.
 - vim
     - enable to install coc extensions by loading .vimrc
-    - copy coc-settings.json in a proper way
+- common
+    - code completion for ac-library
 
 
 ## references

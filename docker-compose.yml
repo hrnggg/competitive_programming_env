@@ -1,7 +1,9 @@
 version: "3"
 services:
   comp_env:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     user: 1000:1000
     volumes:
       - $PWD/atcoder:/home/ijub/contest

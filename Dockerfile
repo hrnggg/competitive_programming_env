@@ -32,7 +32,7 @@ WORKDIR /home/$USERNAME
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 RUN code-server \
     --install-extension ms-python.python \
-    --install-extension llvm-code-extensions.vscode-clangd
+    --install-extension llvm-vs-code-extensions.vscode-clangd
 # ms-vscode-cpptools does not exist on code-server
 COPY --chown=$USERNAME:$USERNAME data/code-server/settings.json .local/share/code-server/User
 
@@ -42,6 +42,10 @@ RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 COPY --chown=$USERNAME:$USERNAME data/vim/.vimrc .
 COPY --chown=$USERNAME:$USERNAME data/vim/coc-settings.json .vim
 RUN vim +PlugInstall +qa
+
+# setup AtCoder Library
+RUN git clone https://github.com/atcoder/ac-library.git
+ENV CPLUS_INCLUDE_PATH /home/$USERNAME/ac-library
 
 COPY --chown=$USERNAME:$USERNAME data/entrypoint.sh .
 

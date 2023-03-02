@@ -35,21 +35,15 @@ RUN code-server \
     --install-extension llvm-code-extensions.vscode-clangd
 # ms-vscode-cpptools does not exist on code-server
 COPY --chown=$USERNAME:$USERNAME data/code-server/settings.json .local/share/code-server/User
-RUN ls -la $HOME/.local/share/code-server/User/settings.json
 
 # setup vim
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 COPY --chown=$USERNAME:$USERNAME data/vim/.vimrc .
-RUN ls -la $HOME/.vimrc
-RUN vim +PlugInstall +qa && \
-    vim +"source ~/.vimrc" +qa # install coc extensions
-# avoid removing coc-settings.json when execute "PlugInstall"
 COPY --chown=$USERNAME:$USERNAME data/vim/coc-settings.json .vim
-RUN ls -la ~/.vim/coc-settings.json
+RUN vim +PlugInstall +qa
 
 COPY --chown=$USERNAME:$USERNAME data/entrypoint.sh .
-RUN ls -la $HOME/entrypoint.sh
 
 EXPOSE 8080
 

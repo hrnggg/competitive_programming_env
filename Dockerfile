@@ -9,7 +9,7 @@ RUN add-apt-repository -y ppa:jonathonf/vim && \
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 
 # install C/C++, Python, vim, and nodejs
-RUN apt install -y gcc-12 g++-12 clangd clang-format python3.11 python3-pip pypy3 vim nodejs
+RUN apt install -y gcc-12 g++-12 clangd clang-format python3.10 python3-pip pypy3 vim nodejs
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 10 && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 10 && \
     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 10

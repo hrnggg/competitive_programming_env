@@ -41,6 +41,7 @@ RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 COPY --chown=$USERNAME:$USERNAME data/vim/.vimrc .
 COPY --chown=$USERNAME:$USERNAME data/vim/coc-settings.json .vim
+COPY --chown=$USERNAME:$USERNAME data/vim/user-snippets .vim/user-snippets
 RUN vim +PlugInstall +qa
 
 # setup AtCoder Library

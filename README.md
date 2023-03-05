@@ -1,5 +1,10 @@
 # competitive_programming_env
 
+## Features
+languages
+- Python (3.10, pypy)
+- C/C++ (GCC12)
+
 ## Usage
 run env with code-server
 ```

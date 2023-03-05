@@ -24,14 +24,14 @@ cd </path/to/problem>
 oj login https://atcoder.jp/
 oj d <problem-url>
 g++ a.cpp
-oj t
+oj t [-S]
 oj s a.cpp
 ```
 
 example of python
 ```
 ...
-oj t -c "python3 a.py"
+oj t -c [-S] "python3 a.py"
 ...
 ```
 

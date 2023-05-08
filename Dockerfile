@@ -19,8 +19,8 @@ COPY data/requirements.txt .
 RUN pip install -r requirements.txt
 
 # add user
-ARG USERNAME=ijub
-ARG PASSWORD=ijub
+ARG USERNAME=ubuntu
+ARG PASSWORD=ubuntu
 RUN useradd -m -u 1000 -s /bin/bash $USERNAME && \
     gpasswd -a $USERNAME sudo && \
     echo $USERNAME:$PASSWORD | chpasswd && \

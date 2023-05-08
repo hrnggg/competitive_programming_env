@@ -43,10 +43,10 @@ oj t -c [-S] "python3 a.py"
 ## [TODO]
 - code-server
     - run code-server with mounted directory
-    - formatting/linting and language-server (e.g. clang-format, clangd, black, isort, etc.) does not seem to work.
+    - formatting/linting and language-server (e.g. clang-format, clangd, black, isort, etc.) do not seem to work.
     - code completion for ac-library
 - vim
     - enable to install coc extensions by loading .vimrc
 
-## references
+## References
 https://github.com/Hiromi-Ayase/competitive-programming-env

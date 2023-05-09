@@ -6,6 +6,6 @@ services:
       dockerfile: Dockerfile
     user: 1000:1000
     volumes:
-      - $PWD/atcoder:/home/ijub/contest
-    working_dir: /home/ijub/contest
+      - $PWD/atcoder:/home/ubuntu/contest
+    working_dir: /home/ubuntu/contest
     tty: true

@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 RUN apt update && \
-    apt install -y git curl wget sudo software-properties-common
+    apt install -y git curl wget sudo software-properties-common xsel
 
 # add PPA
 RUN add-apt-repository -y ppa:jonathonf/vim && \
@@ -49,6 +49,11 @@ RUN vim +PlugInstall +qa
 RUN git clone https://github.com/atcoder/ac-library.git
 ENV CPLUS_INCLUDE_PATH /home/$USERNAME/ac-library
 
+# define pbcopy/pbpaste command
+RUN echo 'alias pbcopy="xsel -b -i"' >> ~/.bashrc && \
+    echo 'alias pbpaste="xsel -b -o"' >> ~/.bashrc
+
+# set entrypoint
 COPY --chown=$USERNAME:$USERNAME data/entrypoint.sh .
 
 EXPOSE 8080

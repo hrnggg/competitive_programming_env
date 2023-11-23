@@ -14,13 +14,13 @@ open http://localhost:8080
 
 run env with cli
 ```
-docker-compose run app
+docker-compose up -d
+docker compose exec app /bin/bash
 ```
 
 cleanup env
 ```
 docker-compose down
-docker container prune
 ```
 
 example of cpp

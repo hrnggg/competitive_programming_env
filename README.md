@@ -14,7 +14,7 @@ open http://localhost:8080
 
 run env with cli
 ```
-docker-compose run comp_env
+docker-compose run app
 ```
 
 cleanup env

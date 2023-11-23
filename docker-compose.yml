@@ -1,9 +1,10 @@
 version: "3"
 services:
-  comp_env:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
+    image: comp_prog
     user: 1000:1000
     volumes:
       - $PWD/atcoder:/home/ubuntu/contest

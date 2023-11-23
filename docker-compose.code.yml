@@ -1,6 +1,6 @@
 version: "3"
 services:
-  comp_env:
+  app:
     ports:
       - 8080:8080
     command: bash -c "$${HOME}/entrypoint.sh"

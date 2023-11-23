@@ -37,6 +37,7 @@ example of python
 ```
 ...
 oj t -c [-S] "python3 a.py"
+oj s a.py -l [LANGUAGE ID]
 ...
 ```
 

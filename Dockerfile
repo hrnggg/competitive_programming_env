@@ -1,28 +1,33 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
-RUN apt update && \
-    apt install -y git curl wget sudo software-properties-common xsel
+RUN apt-get update && \
+    apt-get install -y git curl wget sudo software-properties-common xsel
 
 # add PPA
-RUN add-apt-repository -y ppa:jonathonf/vim && \
-    apt update
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 
 # install C/C++, Python, vim, and nodejs
-RUN apt update
-RUN apt install -y gcc-12 g++-12 clangd clang-format python3.10 python3-pip pypy3 vim nodejs
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 10 && \
-    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 10 && \
-    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 10
+RUN apt-get update
+RUN apt-get install -y gcc-14 g++-14 clangd clang-format python3.12 python3-pip pypy3 vim nodejs
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 10 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 10 && \
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 10
 
 # install python dependencies
-COPY data/requirements.txt .
-RUN pip install -r requirements.txt
+RUN --mount=type=bind,source=data/requirements.txt,target=/tmp/requirements.txt \
+    pip install --break-system-packages -r /tmp/requirements.txt
+
+RUN ls -la /home/
+
+RUN ls -la /home/ubuntu
 
 # add user
 ARG USERNAME=ubuntu
 ARG PASSWORD=ubuntu
-RUN useradd -m -u 1000 -s /bin/bash $USERNAME && \
+# https://askubuntu.com/questions/1513927/ubuntu-24-04-docker-images-now-includes-user-ubuntu-with-uid-gid-1000
+# https://bugs.launchpad.net/cloud-images/+bug/2005129
+RUN userdel -r $USERNAME && \
+    useradd -m -u 1000 -s /bin/bash $USERNAME && \
     gpasswd -a $USERNAME sudo && \
     echo $USERNAME:$PASSWORD | chpasswd && \
     echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
@@ -31,19 +36,16 @@ WORKDIR /home/$USERNAME
 
 # setup code-server
 RUN curl -fsSL https://code-server.dev/install.sh | sh
-RUN code-server \
-    --install-extension ms-python.python \
-    --install-extension llvm-vs-code-extensions.vscode-clangd
-# ms-vscode-cpptools does not exist on code-server
-COPY --chown=$USERNAME:$USERNAME data/code-server/settings.json .local/share/code-server/User
+# install extensions from data/code-server/extensions.txt
+RUN --mount=type=bind,source=data/code-server/extensions.txt,target=/tmp/extensions.txt \
+    code-server --install-extension $(cat /tmp/extensions.txt)
 
 # setup vim
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-COPY --chown=$USERNAME:$USERNAME data/vim/.vimrc .
-COPY --chown=$USERNAME:$USERNAME data/vim/coc-settings.json .vim
-COPY --chown=$USERNAME:$USERNAME data/vim/user-snippets .vim/user-snippets
-RUN vim +PlugInstall +qa
+RUN --mount=type=bind,source=data/vim/.vimrc,target=/home/ubuntu/.vimrc vim +PlugInstall +CocInstall +'CocCommand clangd.install' +qa
+RUN --mount=type=bind,source=data/vim/.vimrc,target=/home/ubuntu/.vimrc vim +CocInstall +qa
+RUN --mount=type=bind,source=data/vim/.vimrc,target=/home/ubuntu/.vimrc vim +'CocCommand clangd.install' +qa
 
 # setup AtCoder Library
 RUN git clone https://github.com/atcoder/ac-library.git
@@ -52,9 +54,6 @@ ENV CPLUS_INCLUDE_PATH /home/$USERNAME/ac-library
 # define pbcopy/pbpaste command
 RUN echo 'alias pbcopy="xsel -b -i"' >> ~/.bashrc && \
     echo 'alias pbpaste="xsel -b -o"' >> ~/.bashrc
-
-# set entrypoint
-COPY --chown=$USERNAME:$USERNAME data/entrypoint.sh .
 
 EXPOSE 8080
 

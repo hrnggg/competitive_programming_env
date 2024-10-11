@@ -39,6 +39,8 @@ au FileType c set shiftwidth=2
 au FileType cpp set tabstop=2
 au FileType cpp set shiftwidth=2
 
+let g:mapleader=","
+
 " SirVer/ultisnips
 let g:UltiSnipsExpandTrigger="<c-i>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -57,6 +59,11 @@ let g:clang_format#detect_style_file = 1
 " preservim/nerdcommenter
 let g:NERDDefaultAlign='left'
 
+" make Vim treat all json files as jsonc
+augroup JsonToJsonc
+    autocmd! FileType json set filetype=jsonc
+augroup END
+
 " also run CocCommand
 " - clangd.install
 let g:coc_global_extensions=[
@@ -64,3 +71,7 @@ let g:coc_global_extensions=[
     \'coc-json',
     \'coc-pyright'
 \]
+
+" coc-pyright
+" toggle sortImports on save
+au BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')

@@ -8,19 +8,19 @@ languages
 ## Usage
 run env with code-server
 ```
-docker-compose -f docker-compose.yml -f docker-compose.code.yml up -d && \
+docker compose -f compose.yml -f compose.code.yml up -d && \
 open http://localhost:8080
 ```
 
 run env with cli
 ```
-docker-compose up -d
+docker compose up -d
 docker compose exec app /bin/bash
 ```
 
 cleanup env
 ```
-docker-compose down
+docker compose down
 ```
 
 example of cpp
@@ -46,8 +46,10 @@ oj s a.py -l [LANGUAGE ID]
     - run code-server with mounted directory
     - formatting/linting and language-server (e.g. clang-format, clangd, black, isort, etc.) do not seem to work.
     - code completion for ac-library
+    - add settings for C/C++
 - vim
-    - enable to install coc extensions by loading .vimrc
+    - ~~enable to install coc extensions by loading .vimrc~~
+    - add settings for C/C++
 
 ## References
 https://github.com/Hiromi-Ayase/competitive-programming-env

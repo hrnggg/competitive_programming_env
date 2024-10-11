@@ -1,0 +1,4 @@
+charliermarsh.ruff
+github.copilot
+ms-python.python
+ms-vscode.cpptools

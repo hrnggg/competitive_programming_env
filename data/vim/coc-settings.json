@@ -5,18 +5,18 @@
         "-std=c++17"
     ],
     "pyright.enable": true,
+    "python.formatting.provider": "ruff",
+    "python.formatting.ruffPath": "/usr/local/bin/ruff",
     "python.linting.enabled": true,
+    "python.linting.ruffEnabled": true,
+    "python.linting.ruffPath": "/usr/local/bin/ruff",
     "python.linting.lintOnSave": true,
-    "python.linting.pylintEnabled": false,
-    "python.linting.flake8Enabled": true,
-    "python.formatting.provider": "black",
-    "python.formatting.blackPath": "/usr/local/bin/black",
-    "python.sortImports.path": "/usr/local/bin/isort",
+    "python.sortImports.path": "/usr/local/bin/ruff",
     "pyright.inlayHints.functionReturnTypes": false,
     "pyright.inlayHints.variableTypes": false,
     "coc.preferences.formatOnSaveFiletypes": [
         "c",
         "cpp",
         "python"
-    ]
+    ],
 }

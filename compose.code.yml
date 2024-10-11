@@ -1,0 +1,12 @@
+services:
+  app:
+    ports:
+      - 8080:8080
+    volumes:
+      - type: bind
+        source: $PWD/data/entrypoint.sh
+        target: /home/ubuntu/entrypoint.sh
+      - type: bind
+        source: $PWD/data/code-server/settings.json
+        target: /home/ubuntu/.local/share/code-server/User/settings.json
+    command: bash -c "$${HOME}/entrypoint.sh"

@@ -4,7 +4,5 @@ numpy
 scipy
 scikit-learn
 networkx
-black
-isort
-flake8
+ruff
 online-judge-tools

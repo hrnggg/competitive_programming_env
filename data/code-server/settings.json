@@ -1,27 +1,29 @@
 {
+    "C_Cpp.clang_format_style": "{BasedOnStyle: Google}",
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cppStandard": "c++17",
     "[c]": {
         "editor.tabSize": 2,
-        "edtor.formatOnSave": true
+        "editor.formatOnSave": true
     },
     "[cpp]": {
         "editor.tabSize": 2,
-        "edtor.formatOnSave": true
+        "editor.formatOnSave": true
     },
-    "clang-format.executable": "/usr/bin/clang-format",
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit"
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true
+    },
+    //"clang-format.executable": "/usr/bin/clang-format",
     "editor.fontSize": 16,
     "editor.renderWhitespace": "boundary",
     "explorer.autoReveal": false,
     "explorer.compactFolders": false,
     "extensions.ignoreRecommendations": true,
-    "[python]": {
-        "edtor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-        }
-    },
-    "python.formatting.blackPath": "/usr/local/bin/black",
-    "python.formatting.provider": "black",
-    "python.sortImports.path": "/usr/local/bin/isort",
     "security.workspace.trust.untrustedFiles": "open",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.inheritEnv": false,

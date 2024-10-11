@@ -1,0 +1,25 @@
+name: comp_prog
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: 1000:1000
+    volumes:
+      - type: bind
+        source: $PWD/atcoder
+        target: /home/ubuntu/contest
+      - type: bind
+        source: $PWD/data/vim/.vimrc
+        target: /home/ubuntu/.vimrc
+      - type: bind
+        source: $PWD/data/vim/coc-settings.json
+        target: /home/ubuntu/.vim/coc-settings.json
+      - type: bind
+        source: $PWD/data/vim/user-snippets
+        target: /home/ubuntu/.vim/user-snippets
+      - type: bind
+        source: $PWD/data/pyproject.toml
+        target: /home/ubuntu/.config/ruff/pyproject.toml
+    working_dir: /home/ubuntu/contest
+    tty: true

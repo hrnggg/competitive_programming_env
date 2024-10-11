@@ -2,8 +2,8 @@
 
 ## Features
 languages
-- Python (3.10, pypy)
-- C/C++ (GCC12)
+- Python (3.12, pypy)
+- C/C++ (GCC14)
 
 ## Usage
 run env with code-server
@@ -43,12 +43,9 @@ oj s a.py -l [LANGUAGE ID]
 
 ## [TODO]
 - code-server
-    - run code-server with mounted directory
-    - formatting/linting and language-server (e.g. clang-format, clangd, black, isort, etc.) do not seem to work.
     - code completion for ac-library
     - add settings for C/C++
 - vim
-    - ~~enable to install coc extensions by loading .vimrc~~
     - add settings for C/C++
 
 ## References

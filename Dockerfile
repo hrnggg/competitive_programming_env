@@ -43,9 +43,11 @@ RUN --mount=type=bind,source=data/code-server/extensions.txt,target=/tmp/extensi
 # setup vim
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-RUN --mount=type=bind,source=data/vim/.vimrc,target=/home/ubuntu/.vimrc vim +PlugInstall +CocInstall +'CocCommand clangd.install' +qa
+RUN --mount=type=bind,source=data/vim/.vimrc,target=/home/ubuntu/.vimrc vim +PlugInstall +qa
 RUN --mount=type=bind,source=data/vim/.vimrc,target=/home/ubuntu/.vimrc vim +CocInstall +qa
-RUN --mount=type=bind,source=data/vim/.vimrc,target=/home/ubuntu/.vimrc vim +'CocCommand clangd.install' +qa
+# Need to open C/C++ files to run `:CocCommand clangd.install`
+# But clangd is already installed in Ubuntu.
+# RUN --mount=type=bind,source=data/vim/.vimrc,target=/home/ubuntu/.vimrc vim +'CocCommand clangd.install' +qa
 
 # setup AtCoder Library
 RUN git clone https://github.com/atcoder/ac-library.git

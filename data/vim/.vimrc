@@ -3,7 +3,6 @@ call plug#begin()
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
-    Plug 'rhysd/vim-clang-format'
     Plug 'preservim/nerdcommenter'
 call plug#end()
 
@@ -52,10 +51,6 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=['user-snippets', 'UltiSnips']
 let b:UltiSnipsSnippetDirectories=['user-snippets']
 
-" rhysd/vim-clang-format
-let g:clang_format#code_style = 'Google'
-let g:clang_format#detect_style_file = 1
-
 " preservim/nerdcommenter
 let g:NERDDefaultAlign='left'
 
@@ -64,8 +59,6 @@ augroup JsonToJsonc
     autocmd! FileType json set filetype=jsonc
 augroup END
 
-" also run CocCommand
-" - clangd.install
 let g:coc_global_extensions=[
     \'coc-clangd',
     \'coc-json',
